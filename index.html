@@ -15,13 +15,13 @@
     </div>
     <div id="newbook-btn-line">
       <p>New</p>
-      <div id="icon-plus"></div>
+      <div id="btn-newbook"></div>
       <p>Book</p>
     </div>
     <!-- Form window -->
     <div id="form-container" class="modal hidden">
-      <button id="close-modal">&times;</button>
-      <form action="">
+      <button id="close-modal" class="close-window">&times;</button>
+      <div id="form">
         <div class="form-group">
           <label for="nb-title">Title</label>
           <input id="nb-title" name="nb-title" type="text" />
@@ -32,14 +32,18 @@
         </div>
         <div class="form-group">
           <label for="nb-pages">Pages</label>
-          <input id="nb-pages" name="nb-pages" type="number" />
+          <input id="nb-pages" name="nb-pages" type="number" min="1" />
         </div>
-        <div class="form-group">
+        <div id="form-group-read" class="form-group">
           <label for="nb-read">Read?</label>
-          <input id="nb-read" name="nb-read" type="checkbox" style= />
+          <input id="nb-read" name="nb-read" type="checkbox" />
         </div>
-        <input type="submit" value="Add Book" />
-      </form>
+        <input id="btn-savebook" type="button" value="Add Book" />
+      </div>
+    </div>
+    <!-- Book display -->
+    <div id="footer-spacer">
+      <div id="grid-container"></div>
     </div>
     <!-- Footer -->
     <div id="footer-container">
