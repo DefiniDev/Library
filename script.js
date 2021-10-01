@@ -9,35 +9,16 @@ function $(x) {
   return document.getElementById(x);
 }
 
-// Library array
-let myLibrary = [
-  {
-    title: "A",
-    author: "B",
-    pages: "1",
-    read: true,
-  },
-  {
-    title: "CC",
-    author: "DD",
-    pages: "22",
-    read: false,
-  },
-  {
-    title: "EEE",
-    author: "FFF",
-    pages: "333",
-    read: true,
-  },
-  {
-    title: "GGGG",
-    author: "HHHH",
-    pages: "4444",
-    read: true,
-  },
-];
+// Check LocalStorage for library, if missing set empty array, otherwise get array from storage
+let myLibrary = [];
+if (JSON.parse(localStorage.getItem("library")) === null) {
+  myLibrary = [];
+  localStorage.setItem("library", JSON.stringify(myLibrary));
+} else {
+  myLibrary = JSON.parse(localStorage.getItem("library"));
+}
 
-// UI creation functions
+// UI creation and array update functions
 const createSettingsIcon = id => {
   const btnSetting = document.createElement("div");
   btnSetting.classList.add("book-settings");
@@ -123,7 +104,7 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
-console.log;
+
 // Add book to Library
 const addBook = () => {
   if (
@@ -131,7 +112,7 @@ const addBook = () => {
     $("nb-author").value === "" ||
     $("nb-pages").value == ""
   ) {
-    console.log("Empty field(s) : book not stored");
+    // console.log("Empty field(s) : book not stored");
     return;
   }
   const title = $("nb-title").value;
@@ -139,11 +120,12 @@ const addBook = () => {
   const pages = $("nb-pages").value;
   const read = $("nb-read").checked;
   myLibrary.push(new Book(title, author, pages, read));
+  localStorage.setItem("library", JSON.stringify(myLibrary));
   clearBooks();
   displayBooks();
 };
 
-// Display books and arrange UI
+// Display books, arrange UI, update array
 function displayBooks() {
   clearBooks();
   for (let i = 0; i < myLibrary.length; i++) {
@@ -170,6 +152,7 @@ function displayBooks() {
       const updateBook = () => {
         saveBook(i);
         updateForm(i);
+        localStorage.setItem("library", JSON.stringify(myLibrary));
         displayBooks();
         $("form-container").classList.add("hidden");
         $("btn-savebook").removeEventListener("click", updateBook);
@@ -180,15 +163,17 @@ function displayBooks() {
 
     $(`btn-close-${i}`).addEventListener("click", () => {
       myLibrary.splice(i, 1);
+      localStorage.setItem("library", JSON.stringify(myLibrary));
       displayBooks();
     });
     $(`btn-slider-${i}`).addEventListener("click", () => {
       myLibrary[i]["read"] === true
         ? (myLibrary[i]["read"] = false)
         : (myLibrary[i]["read"] = true);
+      localStorage.setItem("library", JSON.stringify(myLibrary));
     });
   }
 }
 
-// Initial book display
+// Display intial array
 displayBooks();
