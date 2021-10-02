@@ -19,6 +19,7 @@ body {
   height: 30px;
   background-color: #333;
 }
+
 h1 {
   position: relative;
   top: 17px;
@@ -27,6 +28,7 @@ h1 {
   text-align: center;
   color: #555;
 }
+
 #h1-underline {
   width: 250px;
   margin: 0 auto;
@@ -121,6 +123,8 @@ h1 {
   border: 1px #333 solid;
   border-radius: 8px;
   font-size: 30px;
+  width: 365px;
+  height: 36;
 }
 
 #form-group-read {
@@ -224,6 +228,7 @@ input[type="button"] {
 #footer-spacer {
   min-height: 75.6vh;
 }
+
 #footer-container {
   /* position: absolute; */
   width: 100%;
@@ -231,10 +236,12 @@ input[type="button"] {
   /* bottom: 0; */
   background-color: #333;
 }
+
 footer {
   width: 224px;
   margin: 2px auto auto auto;
 }
+
 span {
   font-family: "Parisienne";
   font-size: 1.3rem;
@@ -244,6 +251,7 @@ span {
   display: inline-block;
   transform: scaleY(0.8);
 }
+
 svg {
   height: 22px;
   width: 22px;
@@ -254,6 +262,7 @@ svg {
 }
 
 /* Animations */
+
 /* Add book btn */
 #icon-plus:hover {
   transition: transform 0.3s ease-in-out;

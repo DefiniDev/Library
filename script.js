@@ -112,7 +112,6 @@ const addBook = () => {
     $("nb-author").value === "" ||
     $("nb-pages").value == ""
   ) {
-    // console.log("Empty field(s) : book not stored");
     return;
   }
   const title = $("nb-title").value;
@@ -163,8 +162,13 @@ function displayBooks() {
 
     $(`btn-close-${i}`).addEventListener("click", () => {
       myLibrary.splice(i, 1);
-      localStorage.setItem("library", JSON.stringify(myLibrary));
-      displayBooks();
+      if (myLibrary.length === 0) {
+        localStorage.clear("library");
+        displayBooks();
+      } else {
+        localStorage.setItem("library", JSON.stringify(myLibrary));
+        displayBooks();
+      }
     });
     $(`btn-slider-${i}`).addEventListener("click", () => {
       myLibrary[i]["read"] === true
