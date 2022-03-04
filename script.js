@@ -162,6 +162,7 @@ function displayBooks() {
 
     $(`btn-close-${i}`).addEventListener("click", () => {
       myLibrary.splice(i, 1);
+      // Delete LocalStorage Library cache if no remaining books
       if (myLibrary.length === 0) {
         localStorage.clear("library");
         displayBooks();
