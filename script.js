@@ -12,13 +12,20 @@
 
   // Check LocalStorage for library, if missing set empty array, otherwise get array from storage
   let myLibrary = [];
-  if (JSON.parse(localStorage.getItem("library")) === null) {
-    myLibrary = [];
-    localStorage.setItem("library", JSON.stringify(myLibrary));
+  if (JSON.parse(localStorage.getItem("at-library")) === null) {
+    myLibrary = [
+      {
+        title: "Demo Book",
+        author: "A. Taskin",
+        pages: "1234",
+        read: false,
+      },
+    ];
+    localStorage.setItem("at-library", JSON.stringify(myLibrary));
   } else {
-    myLibrary = JSON.parse(localStorage.getItem("library"));
+    myLibrary = JSON.parse(localStorage.getItem("at-library"));
   }
-  console.log(myLibrary);
+
   // UI creation, grid-responsiveness and array update functions
   const resetGridColumns = () => {
     let str;
@@ -135,7 +142,7 @@
     const pages = $("nb-pages").value;
     const read = $("nb-read").checked;
     myLibrary.push(new Book(title, author, pages, read));
-    localStorage.setItem("library", JSON.stringify(myLibrary));
+    localStorage.setItem("at-library", JSON.stringify(myLibrary));
     clearBooks();
     displayBooks();
   };
@@ -168,7 +175,7 @@
         const updateBook = () => {
           saveBook(i);
           updateForm(i);
-          localStorage.setItem("library", JSON.stringify(myLibrary));
+          localStorage.setItem("at-library", JSON.stringify(myLibrary));
           displayBooks();
           $("form-container").classList.add("hidden");
           $("btn-savebook").removeEventListener("click", updateBook);
@@ -183,10 +190,10 @@
           myLibrary.splice(i, 1);
           // Delete LocalStorage Library cache if no remaining books
           if (myLibrary.length === 0) {
-            localStorage.clear("library");
+            localStorage.clear("at-library");
             displayBooks();
           } else {
-            localStorage.setItem("library", JSON.stringify(myLibrary));
+            localStorage.setItem("at-library", JSON.stringify(myLibrary));
             displayBooks();
           }
         }, 600);
@@ -195,7 +202,7 @@
         myLibrary[i]["read"] === true
           ? (myLibrary[i]["read"] = false)
           : (myLibrary[i]["read"] = true);
-        localStorage.setItem("library", JSON.stringify(myLibrary));
+        localStorage.setItem("at-library", JSON.stringify(myLibrary));
       });
     }
   }

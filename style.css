@@ -178,7 +178,7 @@ input[type="checkbox"] {
   border-radius: 10px;
   border: 1px solid #333;
   outline: none;
-  background-color: rgb(255, 159, 159);
+  background-color: rgb(255, 128, 128);
   transition: all 0.7s;
 }
 
