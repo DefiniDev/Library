@@ -213,7 +213,7 @@ input:checked:before {
 
 /* Grid */
 .grid-container {
-  min-height: calc(100vh - 225px);
+  min-height: calc(100vh - 240px);
   background: rgb(68, 68, 68);
   background: linear-gradient(
     0deg,
