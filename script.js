@@ -18,7 +18,7 @@
   } else {
     myLibrary = JSON.parse(localStorage.getItem("library"));
   }
-
+  console.log(myLibrary);
   // UI creation, grid-responsiveness and array update functions
   const resetGridColumns = () => {
     let str;
