@@ -10,44 +10,51 @@
   </head>
   <body>
     <!-- Header -->
-    <div id="header-bar"></div>
-    <div id="h1-underline">
-      <h1>My Library</h1>
-    </div>
-    <div id="newbook-btn-line">
-      <p>New</p>
-      <div id="btn-newbook"></div>
-      <p>Book</p>
-    </div>
+    <header>
+      <div id="header-bar">
+        <div id="h1-underline"></div>
+      </div>
+      <h1 id="h1">My Library</h1>
+
+      <div id="newbook-btn-line">
+        <p>New</p>
+        <div id="btn-newbook"></div>
+        <p>Book</p>
+      </div>
+    </header>
     <!-- Form window -->
-    <div id="form-container" class="modal hidden">
-      <button id="close-modal" class="close-window">&times;</button>
-      <div id="form">
-        <div class="form-group">
-          <label for="nb-title">Title</label>
-          <input id="nb-title" name="nb-title" type="text" />
+    <div id="form-container" class="hidden">
+      <div class="modal">
+        <button id="close-modal" class="close-window">X</button>
+        <div id="form">
+          <div class="form-group">
+            <label for="nb-title">Title</label>
+            <input id="nb-title" name="nb-title" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="nb-author">Author</label>
+            <input id="nb-author" name="nb-author" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="nb-pages">Pages</label>
+            <input id="nb-pages" name="nb-pages" type="number" min="1" />
+          </div>
+          <div id="form-group-read" class="form-group">
+            <label for="nb-read">Read?</label>
+            <input id="nb-read" name="nb-read" type="checkbox" />
+          </div>
+          <input id="btn-savebook" type="button" value="Add Book" />
         </div>
-        <div class="form-group">
-          <label for="nb-author">Author</label>
-          <input id="nb-author" name="nb-author" type="text" />
-        </div>
-        <div class="form-group">
-          <label for="nb-pages">Pages</label>
-          <input id="nb-pages" name="nb-pages" type="number" min="1" />
-        </div>
-        <div id="form-group-read" class="form-group">
-          <label for="nb-read">Read?</label>
-          <input id="nb-read" name="nb-read" type="checkbox" />
-        </div>
-        <input id="btn-savebook" type="button" value="Add Book" />
       </div>
     </div>
     <!-- Book display -->
-    <div id="grid-container"></div>
+    <div class="grid-container">
+      <div id="grid"></div>
+    </div>
     <!-- Footer -->
     <div id="footer-container">
       <footer>
-        <span>&copy2021 Aydin Taskin</span>
+        <span>&copy2022 Aydin Taskin</span>
         <a href="https://github.com/DefiniDev">
           <svg
             xmlns="http://www.w3.org/2000/svg"

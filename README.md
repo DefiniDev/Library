@@ -2,7 +2,9 @@
 
 ## Description
 
-Library assignment for The Odin Project: Full-stack JavaScript course.
+Personal digital library-record app.
+
+Assignment piece for The Odin Project: Full-stack JavaScript course.
 
 Outcome of this project:
 

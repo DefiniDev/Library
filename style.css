@@ -9,107 +9,142 @@
 }
 
 body {
-  background: rgb(255, 239, 219);
+  background: rgba(68, 68, 68, 1);
   display: flex;
   flex-flow: column;
 }
 
 #header-bar {
+  position: absolute;
   width: 100%;
-  height: 30px;
-  background-color: #333;
+  height: 80px;
+  background: rgba(68, 68, 68, 1);
 }
 
 h1 {
-  position: relative;
-  top: 17px;
   font-family: "Parisienne";
   font-size: 50px;
   text-align: center;
-  color: #555;
+  color: rgb(255, 244, 230);
+  margin-top: 15px;
+  transform: rotate(1.2deg) scale(0.97);
 }
 
 #h1-underline {
+  position: absolute;
+  background: rgb(255, 244, 230);
+  height: 3px;
   width: 250px;
+  z-index: 10;
+  border-radius: 5px;
   margin: 0 auto;
-  border-bottom: 4px #555 solid;
-  margin: 0 auto 40px auto;
+  left: 0;
+  right: 0;
+  transform: translateY(65px);
 }
 
 #newbook-btn-line {
   display: flex;
   justify-content: center;
+  background-color: rgba(68, 68, 68, 1);
+  padding: 20px 0 20px 0;
+  z-index: 10;
 }
 
 #newbook-btn-line p {
   font-family: "Parisienne";
-  font-size: 26px;
+  font-size: 30px;
   margin: 16px;
+  color: rgb(255, 244, 230);
+}
+
+#newbook-btn-line > :first-child {
+  transform: translateX(-4px);
 }
 
 #btn-newbook {
   display: block;
   content: url(./img/plus.png);
   height: 70px;
-  filter: invert(20%);
-  transform: translateY(2px) translateX(5px);
+  filter: invert(98%) sepia(100%) saturate(100%) hue-rotate(-60deg)
+    brightness(100%) contrast(100%);
+  transition: transform 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+#btn-savebook:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
 }
 
 /* Modal input window */
-.modal {
+#form-container {
+  width: 100%;
+  height: 100%;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal {
   width: 480px;
   height: 530px;
   background-color: white;
   border-radius: 30px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.542);
-  box-shadow: 2px 3px 20px black, 0 0 50px #ffd1a6 inset;
-  z-index: 7;
+  box-shadow: 2px 3px 20px black, 0 0 90px #ffc58f inset;
   opacity: 1;
   transition: all 0.6s ease-in-out;
+  padding: 50px;
+  position: relative;
 }
 
 .hidden {
   opacity: 0;
-  z-index: 0;
   transition: all 0.6s ease-in-out;
   visibility: hidden;
 }
 
-#close-modal {
-  font-size: 58px;
-  transform: none;
-}
-
 .book-settings {
-  position: relative;
-  left: 18px;
+  position: absolute;
+  left: 16px;
   top: 13px;
   content: url(./img/settings.png);
-  height: 20px;
-  width: 20px;
+  height: 32px;
+  width: 32px;
   filter: invert(20%);
+  transition: transform 0.1s ease-in-out;
+  padding: 5px;
+  z-index: 9;
+  cursor: pointer;
 }
 
 .close-window {
   position: absolute;
-  top: 0.8rem;
-  right: 2rem;
+  right: 18px;
+  top: 10px;
   color: #555;
   cursor: pointer;
   border: none;
   background: none;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 26px;
-  font-weight: 500;
-  transform: translateX(10px) scaleY(0.9);
+  transition: transform 0.2s ease-in-out;
+  font-size: 30px;
+  font-family: "Times New Roman";
+  padding: 5px;
+  z-index: 9;
 }
 
-#form-container {
-  padding: 50px;
+#close-modal {
+  position: absolute;
+  right: 18px;
+  top: 10px;
+}
+
+.book > .close-window {
+  font-size: 26px;
 }
 
 .form-group {
@@ -140,7 +175,8 @@ input[type="checkbox"] {
   position: relative;
   width: 50px;
   height: 27px;
-  border-radius: 50px;
+  border-radius: 10px;
+  border: 1px solid #333;
   outline: none;
   background-color: rgb(255, 159, 159);
   transition: all 0.7s;
@@ -154,8 +190,9 @@ input[type="checkbox"]::before {
   height: 25px;
   width: 25px;
   background-color: #333;
-  border-radius: 50px;
+  border-radius: 10px;
   transition: all 0.7s;
+  transform: translate(-1px, -1px);
 }
 
 input:checked {
@@ -171,20 +208,33 @@ input:checked:before {
 #nb-read {
   transform: translateY(5px);
   margin-left: 15px;
+  cursor: pointer;
 }
 
 /* Grid */
-#grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  min-height: 75.8vh;
+.grid-container {
+  min-height: calc(100vh - 225px);
+  background: rgb(68, 68, 68);
+  background: linear-gradient(
+    0deg,
+    rgba(68, 68, 68) 0%,
+    rgba(255, 209, 166, 1) 50%,
+    rgba(68, 68, 68) 100%
+  );
 }
 
+#grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+}
+
+/* Books */
 .book {
   background-color: white;
   min-height: 430px;
-  width: 300px;
-  margin: 40px auto 20px auto;
+  width: 285px;
+  margin: 20px auto 20px auto;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -194,11 +244,8 @@ input:checked:before {
   box-shadow: 2px 3px 20px black, 0 0 50px #ffd1a6 inset;
   color: #555;
   position: relative;
-}
-
-.book .book-info {
-  font-size: 26px;
-  word-wrap: break-word;
+  transition: all 0.3s ease-in-out;
+  padding: 40px 10px 20px 10px;
 }
 
 .book p {
@@ -208,36 +255,57 @@ input:checked:before {
 
 .book .book-info {
   font-family: "Times New Roman", Times, serif;
-  margin-bottom: 16px;
+  font-size: 26px;
+  word-wrap: break-word;
 }
 
 .book input[type="checkbox"] {
   margin: 0 auto 10px auto;
+  cursor: pointer;
 }
 
 .book input[type="checkbox"]::before {
   top: 1px;
 }
 
+.book-settings:hover,
+.close-window:hover,
+#btn-newbook:hover {
+  transform: scale(1.2);
+  transition: transform 0.1s ease-in-out;
+}
+
+#btn-savebook:active,
+.book-settings:active,
+.close-window:active,
+#btn-newbook:active {
+  transform: scale(1.5);
+}
+
 /* Save btn */
-input[type="button"] {
+#btn-savebook {
   font-size: 30px;
   display: block;
   width: 160px;
   font-family: "Parisienne";
   margin: 30px auto 0 auto;
+  border: 1px #222 solid;
+  border-radius: 10px;
+  transition: transform 0.1s ease-in-out;
+  cursor: pointer;
 }
 
 /* Footer */
 #footer-container {
+  bottom: 0;
   width: 100%;
-  height: 40px;
-  background-color: #333;
+  height: 45px;
+  background-color: rgba(68, 68, 68, 1);
 }
 
 footer {
   width: 224px;
-  margin: 2px auto auto auto;
+  margin: 6px auto auto auto;
 }
 
 span {
@@ -259,30 +327,10 @@ svg {
   fill: rgb(255, 239, 219);
 }
 
-/* Animations */
-
-/* Add book btn */
-#icon-plus:hover {
-  transition: transform 0.3s ease-in-out;
-  transform: scale(1.2);
-}
-
-#icon-plus {
-  transition: transform 0.2s ease-in-out;
-  transform: scale(1);
-}
-
 /* Git icon */
 svg {
   transition: transform 0.3s ease-in-out;
 }
 svg:hover {
   transform: rotate(360deg) scale(1.2);
-}
-
-/* Media Queries */
-@media only screen and (max-width: 946px) {
-  #grid-container {
-    grid-template-columns: 1fr;
-  }
 }
