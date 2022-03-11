@@ -1,6 +1,25 @@
 "use strict";
 // disable drag behaviour
 (function () {
+  // Initialize clock
+  const startTime = () => {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    $("header-time").textContent = h + ":" + m + ":" + s;
+    setTimeout(startTime, 1000);
+  };
+  function checkTime(i) {
+    if (i < 10) {
+      i = "0" + i;
+    } // add zero in front of numbers < 10
+    return i;
+  }
+  startTime();
+
   window.ondragstart = function () {
     return false;
   };
@@ -16,7 +35,7 @@
     myLibrary = [
       {
         title: "Demo Book",
-        author: "A. Taskin",
+        author: "N/A",
         pages: "1234",
         read: false,
       },
@@ -26,10 +45,43 @@
     myLibrary = JSON.parse(localStorage.getItem("at-library"));
   }
 
-  // UI creation, grid-responsiveness and array update functions
+  // UI creation, time-display, grid-responsiveness and array update functions
+
+  // Set date
+  (function () {
+    const nth = function (d) {
+      if (d > 3 && d < 21) return "th";
+      switch (d % 10) {
+        case 1:
+          return "st";
+        case 2:
+          return "nd";
+        case 3:
+          return "rd";
+        default:
+          return "th";
+      }
+    };
+    const now = new Date();
+    const dayName = now.toLocaleDateString(navigator.locale, {
+      weekday: "long",
+    });
+    const day = `${now.getDate()}` + `${nth(now.getDate())}`;
+    const monthName = now.toLocaleDateString(navigator.locale, {
+      month: "long",
+    });
+    const year = now.getFullYear();
+
+    console.log(dayName);
+    console.log(day);
+    console.log(monthName);
+    console.log(year);
+    $("header-date").textContent = `${dayName} ${day} ${monthName} ${year}`;
+  })();
+
   const resetGridColumns = () => {
     let str;
-    let contentWidth = myLibrary.length * 300 + myLibrary.length * 10;
+    let contentWidth = myLibrary.length * 285 + myLibrary.length * 10;
     if (contentWidth < window.innerWidth && myLibrary.length < 6) {
       str = "1fr ".repeat(myLibrary.length);
     } else {
