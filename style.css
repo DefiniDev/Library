@@ -14,6 +14,10 @@ body {
   flex-flow: column;
 }
 
+header {
+  filter: blur(0.5px);
+}
+
 #header-bar {
   position: absolute;
   width: 100%;
@@ -28,7 +32,7 @@ body {
 }
 
 #header-date {
-  width: 100px;
+  width: 120px;
   text-align: right;
 }
 
@@ -317,6 +321,7 @@ input:checked:before {
 footer {
   width: 224px;
   margin: 6px auto auto auto;
+  filter: blur(0.5px);
 }
 
 footer > span {
@@ -326,7 +331,7 @@ footer > span {
   text-decoration: underline;
   text-shadow: 1px 1px #333;
   display: inline-block;
-  transform: scaleY(0.8);
+  transform: scaleY(0.9);
 }
 
 svg {
