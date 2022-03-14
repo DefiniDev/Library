@@ -130,7 +130,7 @@ h1 {
   content: url(./img/settings.png);
   height: 32px;
   width: 32px;
-  filter: invert(20%);
+  filter: invert(30%);
   transition: transform 0.1s ease-in-out;
   padding: 5px;
   z-index: 8;
